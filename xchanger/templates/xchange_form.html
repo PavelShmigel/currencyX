@@ -1,0 +1,25 @@
+{% extends 'bace.html' %}
+{% block content %}
+    <div class="container">
+        <form role="form" style="max-width: 500px;position: relative;margin: 0 auto;" method="POST", action="">{% csrf_token %}
+            <h2 >Currency converter</h2>
+
+            <div class="row">
+                <div class="col-sm-5 col-xs-8 {% if is_valid == False %}has-error{% endif %}">
+                    {{ form.amount }}
+                </div>
+                <div class="col-sm-3 col-xs-4">
+                    {{ form.c_code_1 }}
+                </div>
+                <div class="col-sm-1 col-xs-8">
+                    <h4 style="text-align: right">to</h4>
+                </div>
+                <div class="col-sm-3 col-xs-4">
+                    {{ form.c_code_2 }}
+                </div>
+            </div>
+                 {% block answer %}{% endblock %}
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Convert</button>
+        </form>
+    </div>
+{% endblock %}

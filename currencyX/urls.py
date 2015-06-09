@@ -22,4 +22,7 @@ urlpatterns = [
         r'(?P<c_code_1>[a-z]{3})/'
         r'to/'
         r'(?P<c_code_2>[a-z]{3})/', include('xchanger.urls')),
+    url(r'^$', 'xchanger.views.getInHtml'),
+    # url(r'redirect/$', 'xchanger.views.htmlRedirect'),
+    url(r'^(?P<path>.*)$', 'xchanger.views.test404')
 ]

@@ -36,7 +36,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'xchanger'
+    'xchanger',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -55,7 +55,8 @@ ROOT_URLCONF = 'currencyX.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        # 'DIRS': [os.path.join(BASE_DIR, 'templates'), 'templates'],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -111,8 +112,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR,  'templates'),
-)
+# TEMPLATE_DIRS = (
+#     os.path.join(BASE_DIR,  'templates'),
+# )
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
