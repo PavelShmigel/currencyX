@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/1.8/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.8/ref/settings/
 """
+from __future__ import absolute_import
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -115,5 +116,11 @@ STATICFILES_DIRS = (
 # TEMPLATE_DIRS = (
 #     os.path.join(BASE_DIR,  'templates'),
 # )
+
+# Celery
+BROKER_URL = 'django://'
+INSTALLED_APPS += ('djcelery', 'kombu.transport.django')
+CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend'
+CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
