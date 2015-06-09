@@ -18,4 +18,8 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^(?i)(?P<amount>[0-9]+(.[0-9]+)?)/'
+        r'(?P<c_code_1>[a-z]{3})/'
+        r'to/'
+        r'(?P<c_code_2>[a-z]{3})/', include('xchanger.urls')),
 ]
