@@ -1,6 +1,5 @@
 {% extends "admin/base_site.html" %}
-{#{% load i18n admin_static xchange_t_tags%}#}
-{% load i18n admin_static%}
+{% load i18n admin_static xchange_t_tags%}
 
 {% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}" />{% endblock %}
 
@@ -49,7 +48,7 @@
 {% endif %}
 
     {# Хардкодим актуальные курсы валют#}
-{#    {% show_results %}#}
+    {% show_results %}
 
 </div>
 {% endblock %}

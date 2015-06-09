@@ -1,0 +1,16 @@
+{# context: success, base_currency, upd_date, currency_course#}
+{% if success == 1%}
+    <div class="app-auth module">
+        <table>
+            <caption>Актуальные курсы валют относительно {{ base_currency.c_name }}({{ base_currency.c_code }}), {{ upd_date }}</caption>
+            <tr>
+                <th>Код валюты</th>
+                <th>Название валюты</th>
+                <th>Курс</th>
+            </tr>
+            {% for c_code, c_name, value in currency_course %}
+            <tr><td>{{ c_code }}</td><td>{{ c_name }}</td><td>{{ value }}</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endif %}
