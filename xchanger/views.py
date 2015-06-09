@@ -9,19 +9,19 @@ from xchanger.models import Currency
 
 # Create your views here.
 
-@cache_page(60*30)
+
 def getInText(request, **kwargs):
     result = getResult(**kwargs)
     resp = str(result['result']) if result['success'] else result['error']
     return HttpResponse(resp)
 
-@cache_page(60*30)
+
 def getInJson(request, **kwargs):
     result = getResult(**kwargs)
     resp = json.dumps(result)
     return HttpResponse(resp, content_type="application/json")
 
-@cache_page(60*30)
+
 def getInHtml(request, **kwargs):
     if request.POST:
         form = ConverterForm(request.POST)

@@ -1,6 +1,8 @@
 # -*- coding:utf-8 -*-
 from decimal import Decimal
+from functools import wraps
 from django.db.models import Max
+from django.core.cache import cache as _cache
 from xchanger.models import UpdateInfo, Currency, Rates
 from xchanger.tools.dbupdate import update_db
 
@@ -8,6 +10,26 @@ __author__ = 'pavel.sh'
 
 calc_xchange_value = lambda amount, rate_1, rate_2: amount/rate_1*rate_2
 
+class cache(object):
+
+    def __init__(self, seconds=None):
+        self.seconds = seconds
+
+    def __call__(self, func):
+
+        @wraps(func)
+        def callable(*args, **kwargs):
+            cache_key = [func, args, kwargs]
+            result = _cache.get(cache_key)
+            if result:
+                return result
+            result = func(*args, **kwargs)
+            _cache.set(cache_key, result, timeout=self.seconds)
+            return result
+
+        return callable
+
+@cache(seconds=60*30)
 def getResult(amount, c_code_1, c_code_2):
     success = True
     result = dict()
