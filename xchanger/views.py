@@ -52,7 +52,7 @@ def getInHtml(request, **kwargs):
                                            'amount': float(amount),
                                            'currency_1': currency_1,
                                            'currency_2': currency_2,
-                                           'value': floatSmartRound(result['result'])},
+                                           'value': '{:f}'.format(floatSmartRound(result['result']))},
                                   context_instance=RequestContext(request))
 
     return render_to_response(template_name='xchange_form.html',
