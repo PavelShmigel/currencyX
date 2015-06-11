@@ -66,3 +66,23 @@ def getResult(amount, c_code_1, c_code_2):
     result.update({'success': success})
     result.update({'result': float(val)})
     return result
+
+def floatSmartRound(x):
+    try:
+        if x > 1000:
+            result = round(x, 2)
+        elif x > 100:
+            result = round(x, 3)
+        elif x > 1:
+            result = round(x, 4)
+        elif x > 0.00001:
+            result = round(x, 6)
+        elif x > 0.0000001:
+            result = round(x, 8)
+        else:
+            # иначе все пичально
+            result = x
+    except:
+        result = x
+    finally:
+        return result

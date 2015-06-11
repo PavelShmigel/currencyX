@@ -1,8 +1,7 @@
 import json
 from django.http import HttpResponse
 from django.shortcuts import render_to_response, redirect
-from django.views.decorators.cache import cache_page
-from xchanger.tools.calc import getResult
+from xchanger.tools.calc import getResult,floatSmartRound
 from django.template import RequestContext
 from xchanger.forms import ConverterForm
 from xchanger.models import Currency
@@ -53,7 +52,7 @@ def getInHtml(request, **kwargs):
                                            'amount': float(amount),
                                            'currency_1': currency_1,
                                            'currency_2': currency_2,
-                                           'value': '{0:4.8f}'.format(result['result'])},
+                                           'value': floatSmartRound(result)},
                                   context_instance=RequestContext(request))
 
     return render_to_response(template_name='xchange_form.html',
